@@ -6,6 +6,10 @@
   <title>Contact · AAFL</title>
   <meta name="description" content="Contact · All American Freight Logistics" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Preload -->
+  <link rel="preload" as="image" href="assets/logo.jpg">
+  <link rel="preload" as="image" href="assets/marker-icon.jpg">
 </head>
 <body>
 
@@ -13,12 +17,11 @@
   <div class="nav" id="site-nav">
     <div class="container nav-inner">
       <div class="brand">
-        <img src="assets/logo.jpg" alt="AAFL logo" />
+        <img src="assets/logo.jpg" alt="AAFL logo" fetchpriority="high" decoding="async" />
         <span>All American Freight Logistics — The Parhar Group</span>
         <span class="tag">“The right choice in transportation”</span>
       </div>
 
-      <!-- Mobile toggle -->
       <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
         <span class="nav-bar"></span><span class="nav-bar"></span><span class="nav-bar"></span>
       </button>
@@ -50,24 +53,18 @@
 
     <!-- FORM: posts to Cloudflare Pages Function at /api/contact -->
     <form id="contact-form" class="card" method="POST" action="/api/contact">
-      <!-- Honeypot (spam trap) -->
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off">
-
       <label class="lbl">Your Name
         <input class="input" type="text" name="name" required>
       </label>
-
       <label class="lbl">Your Email
         <input class="input" type="email" name="email" required>
       </label>
-
       <label class="lbl">Message
         <textarea class="textarea" name="message" rows="6" required></textarea>
       </label>
-
       <button class="btn" type="submit">Send</button>
       <div id="form-status" class="alert" role="status" aria-live="polite"></div>
-
       <p class="small">
         Having trouble? Email <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>.
       </p>
@@ -78,8 +75,8 @@
     <div class="container small">
       <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px">
         <div style="grid-column:span 8">
-          <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br/>
-          1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br/>
+          <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br>
+          1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br>
           330-724-1873 &nbsp; · &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
         </div>
         <div style="grid-column:span 4;text-align:right">
@@ -88,41 +85,34 @@
         </div>
       </div>
       <div class="badge-row" style="padding-top:10px">
-        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px">
+        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px" loading="lazy" decoding="async">
         <span>Akron, OH · Serving 48 states &amp; Canada</span>
       </div>
     </div>
   </footer>
 
-  <!-- Mobile nav + form submit (AJAX, graceful fallback) -->
+  <!-- nav toggle + form submit -->
   <script>
-  // nav toggle
   (function(){
     const nav  = document.getElementById('site-nav');
     const btn  = nav?.querySelector('.nav-toggle');
     const menu = document.getElementById('site-menu');
-    if (!btn || !menu) return;
-    btn.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open);
-    });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      nav.classList.remove('is-open'); btn.setAttribute('aria-expanded','false');
-    }));
+    if(!btn || !menu) return;
+    function closeMenu(){ nav.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); document.body.classList.remove('no-scroll'); }
+    btn.addEventListener('click', () => { const open = nav.classList.toggle('is-open'); btn.setAttribute('aria-expanded', open); document.body.classList.toggle('no-scroll', open); });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', ()=>{ if(window.matchMedia('(min-width: 721px)').matches) closeMenu(); });
   })();
 
-  // contact form fetch -> /api/contact
   (function(){
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (!form) return;
     form.addEventListener('submit', async (e) => {
-      // Let the browser submit normally if fetch isn't available
       if (!window.fetch) return;
       e.preventDefault();
       status.className = 'alert info';
       status.textContent = 'Sending…';
-
       try {
         const fd = new FormData(form);
         const resp = await fetch(form.action, { method: 'POST', body: fd });
@@ -131,21 +121,18 @@
           status.className = 'alert success';
           status.textContent = 'Thanks—your message has been sent.';
         } else {
-          const text = await resp.text().catch(()=>'');
           status.className = 'alert error';
           status.textContent = 'There was a problem. Please email Operations@2010aafl.com.';
-          console.warn('Contact error:', text);
         }
       } catch (err) {
         status.className = 'alert error';
         status.textContent = 'Network error. Please try again.';
-        console.error(err);
       }
     });
   })();
   </script>
 
-  <!-- typewriter hook is harmless if not present on this page -->
+  <!-- typewriter (safe if absent) -->
   <script>
   (function(){
     var el = document.getElementById('about-type');

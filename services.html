@@ -4,21 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Services · AAFL</title>
-  <link rel="stylesheet" href="styles.css">
   <meta name="description" content="Services · All American Freight Logistics">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Preload above-the-fold images -->
+  <link rel="preload" as="image" href="assets/logo.jpg">
+  <link rel="preload" as="image" href="assets/services-rail.jpg">
 </head>
 <body>
-  
-  <div class="nav">
+
+  <div class="nav" id="site-nav">
     <div class="container nav-inner">
       <div class="brand">
-        <img src="assets/logo.jpg" alt="AAFL logo"/>
+        <img src="assets/logo.jpg" alt="AAFL logo" fetchpriority="high" decoding="async">
         <span>All American Freight Logistics — The Parhar Group</span>
         <span class="tag">“The right choice in transportation”</span>
       </div>
-      <nav class="menu">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
+        <span class="nav-bar"></span><span class="nav-bar"></span><span class="nav-bar"></span>
+      </button>
+      <nav id="site-menu" class="menu">
         <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
+        <a class="active" href="services.html">Services</a>
         <a href="become-a-carrier.html">Become a Carrier</a>
         <a href="bills-and-invoices.html">Bills &amp; Invoices</a>
         <a href="shipping-agency.html">Shipping Agency</a>
@@ -29,55 +36,53 @@
   </div>
 
   <main class="container">
-  
-<h1>Services</h1>
-<p><strong>Intermodal Excellence.</strong> Expanding further into the intermodal business, The Parhar Group proudly serves all 48 states with a meticulously planned and executed range of services. From temperature‑controlled solutions for sensitive goods to expedited reefer trailers moving on trains across the U.S., with real‑time monitoring and tracking.</p>
-<p><img src="assets/services-rail.jpg" alt="Intermodal train" style="width:100%;border-radius:12px"></p>
+    <h1>Services</h1>
+    <p><strong>Intermodal Excellence.</strong> Expanding further into the intermodal business, The Parhar Group proudly serves all 48 states with a meticulously planned and executed range of services. From temperature-controlled solutions for sensitive goods to expedited reefer trailers moving on trains across the U.S., with real-time monitoring and tracking.</p>
+    <p><img src="assets/services-rail.jpg" alt="Intermodal train" style="width:100%;border-radius:12px"></p>
 
-<h2 class="section-title">Warehouse Services</h2>
-<p>Climate‑controlled freights, expedited shipping, restacking loads, local and same‑day deliveries, and full‑service logistics with regular safety inspections.</p>
-<p><img src="assets/services-warehouse2.jpg" alt="Docked trailers" style="width:100%;border-radius:12px"></p>
+    <h2 class="section-title">Warehouse Services</h2>
+    <p>Climate-controlled freights, expedited shipping, restacking loads, local and same-day deliveries, and full-service logistics with regular safety inspections.</p>
+    <p><img src="assets/services-warehouse2.jpg" alt="Docked trailers" style="width:100%;border-radius:12px" loading="lazy" decoding="async"></p>
 
-<h2 class="section-title">Airfreight Services</h2>
-<p>We’ve grown from trucking to intermodal to air—shipping to any destination in the United States.</p>
-<p><img src="assets/services-air.jpg" alt="Air cargo loading" style="width:100%;border-radius:12px"></p>
+    <h2 class="section-title">Airfreight Services</h2>
+    <p>We’ve grown from trucking to intermodal to air—shipping to any destination in the United States.</p>
+    <p><img src="assets/services-air.jpg" alt="Air cargo loading" style="width:100%;border-radius:12px" loading="lazy" decoding="async"></p>
 
-<h2 class="section-title">Sea Freight Services</h2>
-<p>Full‑service sea freight from coast to coast, specializing in various freight types.</p>
-<p><img src="assets/services-sea.jpg" alt="Container ship" style="width:100%;border-radius:12px"></p>
-
+    <h2 class="section-title">Sea Freight Services</h2>
+    <p>Full-service sea freight from coast to coast, specializing in various freight types.</p>
+    <p><img src="assets/services-sea.jpg" alt="Container ship" style="width:100%;border-radius:12px" loading="lazy" decoding="async"></p>
   </main>
-  
+
   <footer class="footer">
     <div class="container small">
       <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px">
         <div style="grid-column:span 8">
-          <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br/>
-          1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br/>
-          330-724-1873 &nbsp; &middot; &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
+          <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br>
+          1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br>
+          330-724-1873 &nbsp; · &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
         </div>
         <div style="grid-column:span 4;text-align:right">
           <div>&copy; 2025 All Rights Reserved</div>
-          <div class="small">Static build generated 2025-09-05</div>
         </div>
       </div>
       <div class="badge-row" style="padding-top:10px">
-        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px">
+        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px" loading="lazy" decoding="async">
         <span>Akron, OH · Serving 48 states &amp; Canada</span>
       </div>
     </div>
   </footer>
 
-  <!-- typewriter script -->
+  <!-- mobile nav toggle -->
   <script>
   (function(){
-    var el = document.getElementById('about-type');
-    if(!el) return;
-    var full = el.getAttribute('data-text') || '';
-    el.textContent = '';
-    var i = 0, speed = 22, delay = 450;
-    function type(){ if(i <= full.length){ el.textContent = full.slice(0,i++); setTimeout(type, speed); } else { el.style.borderRightColor='transparent'; } }
-    setTimeout(type, delay);
+    const nav  = document.getElementById('site-nav');
+    const btn  = nav?.querySelector('.nav-toggle');
+    const menu = document.getElementById('site-menu');
+    if(!btn || !menu) return;
+    function closeMenu(){ nav.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); document.body.classList.remove('no-scroll'); }
+    btn.addEventListener('click', () => { const open = nav.classList.toggle('is-open'); btn.setAttribute('aria-expanded', open); document.body.classList.toggle('no-scroll', open); });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', ()=>{ if(window.matchMedia('(min-width: 721px)').matches) closeMenu(); });
   })();
   </script>
 </body>
