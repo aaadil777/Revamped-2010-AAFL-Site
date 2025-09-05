@@ -7,14 +7,14 @@
   <meta name="description" content="Contact · All American Freight Logistics" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Preload -->
+  <!-- Preload small, above-the-fold assets -->
   <link rel="preload" as="image" href="assets/logo.jpg">
   <link rel="preload" as="image" href="assets/marker-icon.jpg">
 </head>
 <body>
 
   <!-- NAV -->
-  <div class="nav" id="site-nav">
+  <div class="nav" id="site-nav" role="navigation">
     <div class="container nav-inner">
       <div class="brand">
         <img src="assets/logo.jpg" alt="AAFL logo" fetchpriority="high" decoding="async" />
@@ -22,8 +22,9 @@
         <span class="tag">“The right choice in transportation”</span>
       </div>
 
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
-        <span class="nav-bar"></span><span class="nav-bar"></span><span class="nav-bar"></span>
+      <!-- FIX: id matches script; span class matches CSS (.bar) -->
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
 
       <nav id="site-menu" class="menu">
@@ -91,25 +92,45 @@
     </div>
   </footer>
 
-  <!-- nav toggle + form submit -->
+  <!-- Hamburger behavior -->
   <script>
   (function(){
     const nav  = document.getElementById('site-nav');
-    const btn  = nav?.querySelector('.nav-toggle');
+    const btn  = document.getElementById('nav-toggle');
     const menu = document.getElementById('site-menu');
-    if(!btn || !menu) return;
-    function closeMenu(){ nav.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); document.body.classList.remove('no-scroll'); }
-    btn.addEventListener('click', () => { const open = nav.classList.toggle('is-open'); btn.setAttribute('aria-expanded', open); document.body.classList.toggle('no-scroll', open); });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    window.addEventListener('resize', ()=>{ if(window.matchMedia('(min-width: 721px)').matches) closeMenu(); });
-  })();
+    if(!nav || !btn || !menu) return;
 
+    const close = () => {
+      nav.classList.remove('is-open');
+      document.body.classList.remove('nav-open');
+      btn.setAttribute('aria-expanded','false');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const open = nav.classList.toggle('is-open');
+      document.body.classList.toggle('nav-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+
+    // close on link tap
+    menu.addEventListener('click', (e) => { if(e.target.closest('a')) close(); });
+
+    // close when switching to desktop or location changes
+    matchMedia('(min-width:901px)').addEventListener('change', close);
+    window.addEventListener('hashchange', close);
+  })();
+  </script>
+
+  <!-- Contact form fetch -->
+  <script>
   (function(){
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (!form) return;
+
     form.addEventListener('submit', async (e) => {
-      if (!window.fetch) return;
+      if (!window.fetch) return; // older browsers fallback to normal POST
       e.preventDefault();
       status.className = 'alert info';
       status.textContent = 'Sending…';
@@ -124,7 +145,7 @@
           status.className = 'alert error';
           status.textContent = 'There was a problem. Please email Operations@2010aafl.com.';
         }
-      } catch (err) {
+      } catch {
         status.className = 'alert error';
         status.textContent = 'Network error. Please try again.';
       }
@@ -144,5 +165,6 @@
     setTimeout(type, delay);
   })();
   </script>
+
 </body>
 </html>
