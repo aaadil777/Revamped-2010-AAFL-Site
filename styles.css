@@ -1,4 +1,4 @@
-/* Simple, clean stylesheet for AAFL static site */
+﻿/* Simple, clean stylesheet for AAFL static site */
 :root{
   --bg:#f8fafc;
   --ink:#0f172a;
@@ -162,3 +162,4 @@ h1, h2, h3, [id] { scroll-margin-top: 80px; }
 
 /* make sure anchors don't hide under sticky bar */
 [id]{scroll-margin-top:80px}
+

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Â· AAFL</title>
-  <meta name="description" content="Contact Â· All American Freight Logistics" />
+  <title>Contact · AAFL</title>
+  <meta name="description" content="Contact · All American Freight Logistics" />
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Preload small, above-the-fold images used on this page -->
@@ -18,8 +18,8 @@
     <div class="container nav-inner">
       <div class="brand">
         <img src="assets/logo.jpg" alt="AAFL logo" fetchpriority="high" decoding="async" />
-        <span>All American Freight Logistics â€” The Parhar Group</span>
-        <span class="tag">â€œThe right choice in transportationâ€</span>
+        <span>All American Freight Logistics — The Parhar Group</span>
+        <span class="tag">“The right choice in transportation”</span>
       </div>
 
       <!-- IMPORTANT: id="nav-toggle" + three .bar spans to match CSS -->
@@ -76,7 +76,7 @@
         <div style="grid-column:span 8">
           <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br>
           1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br>
-          330-724-1873 &nbsp; Â· &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
+          330-724-1873 &nbsp; · &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
         </div>
         <div style="grid-column:span 4;text-align:right">
           <div>&copy; 2025 All Rights Reserved</div>
@@ -85,7 +85,7 @@
       </div>
       <div class="badge-row" style="padding-top:10px">
         <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px" loading="lazy" decoding="async">
-        <span>Akron, OH Â· Serving 48 states &amp; Canada</span>
+        <span>Akron, OH · Serving 48 states &amp; Canada</span>
       </div>
     </div>
   </footer>
@@ -130,13 +130,13 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       status.className = 'alert info';
-      status.textContent = 'Sendingâ€¦';
+      status.textContent = 'Sending…';
       try {
         const resp = await fetch(form.action, { method: 'POST', body: new FormData(form) });
         if (resp.ok) {
           form.reset();
           status.className = 'alert success';
-          status.textContent = 'Thanksâ€”your message has been sent.';
+          status.textContent = 'Thanks—your message has been sent.';
         } else {
           status.className = 'alert error';
           status.textContent = 'There was a problem. Please email Operations@2010aafl.com.';
@@ -164,4 +164,5 @@
   <script src="app.js" defer></script>
 </body>
 </html>
+
 
