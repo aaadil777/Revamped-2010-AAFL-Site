@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · AAFL</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Contact · All American Freight Logistics">
+</head>
+<body>
+  
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="assets/logo.jpg" alt="AAFL logo"/>
+        <span>All American Freight Logistics — The Parhar Group</span>
+        <span class="tag">“The right choice in transportation”</span>
+      </div>
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="become-a-carrier.html">Become a Carrier</a>
+        <a href="bills-and-invoices.html">Bills &amp; Invoices</a>
+        <a href="shipping-agency.html">Shipping Agency</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="container">
+  
+<h1>Contact The Parhar Group</h1>
+<p><strong>Company Headquarters &amp; Terminal</strong><br>
+1172 Rosemary Blvd, Akron, OH 44306, USA<br>
+Phone: (330) 724‑1873</p>
+<p><strong>Customers, Shipments &amp; Operations</strong><br>
+<a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a></p>
+<p><strong>General Support for Carriers</strong><br>
+<a href="mailto:Carriers@2010aafl.com">Carriers@2010aafl.com</a></p>
+
+<form action="mailto:Operations@2010aafl.com" method="post" enctype="text/plain" class="card">
+  <label>Your Name<br><input type="text" name="name" required style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px"></label><br><br>
+  <label>Your Email<br><input type="email" name="email" required style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px"></label><br><br>
+  <label>Message<br><textarea name="message" rows="6" required style="width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px"></textarea></label><br><br>
+  <button class="btn" type="submit">Send</button>
+  <p class="small">Note: For form handling on static hosting, swap to Formspree or Netlify Forms—see README.</p>
+</form>
+
+  </main>
+  
+  <footer class="footer">
+    <div class="container small">
+      <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px">
+        <div style="grid-column:span 8">
+          <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br/>
+          1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br/>
+          330-724-1873 &nbsp; &middot; &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
+        </div>
+        <div style="grid-column:span 4;text-align:right">
+          <div>&copy; 2025 All Rights Reserved</div>
+          <div class="small">Static build generated 2025-09-05</div>
+        </div>
+      </div>
+      <div class="badge-row" style="padding-top:10px">
+        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px">
+        <span>Akron, OH · Serving 48 states &amp; Canada</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- typewriter script -->
+  <script>
+  (function(){
+    var el = document.getElementById('about-type');
+    if(!el) return;
+    var full = el.getAttribute('data-text') || '';
+    el.textContent = '';
+    var i = 0, speed = 22, delay = 450;
+    function type(){ if(i <= full.length){ el.textContent = full.slice(0,i++); setTimeout(type, speed); } else { el.style.borderRightColor='transparent'; } }
+    setTimeout(type, delay);
+  })();
+  </script>
+</body>
+</html>
