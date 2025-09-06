@@ -57,22 +57,46 @@
 
   <footer class="footer">
     <div class="container small">
-      <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px">
-        <div style="grid-column:span 8">
+      <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:12px;align-items:start">
+        <!-- Left: brand + address -->
+        <div class="footer-brand" style="grid-column:span 8">
+          <a href="index.html" style="display:inline-block;vertical-align:middle;margin-bottom:6px">
+            <img src="assets/logo.jpg" alt="AAFL logo" style="height:42px;width:auto;display:block">
+          </a><br>
           <strong>All American Freight Logistics, LLC &amp; Parhar Trucking Inc</strong><br>
-          1162 &amp; 1172 Rosemary Blvd. Akron OH 44306<br>
+          1162 &amp; 1172 Rosemary Blvd. Akron, OH 44306<br>
           330-724-1873 &nbsp; · &nbsp; <a href="mailto:Operations@2010aafl.com">Operations@2010aafl.com</a>
         </div>
+
+        <!-- Right: copyright -->
         <div style="grid-column:span 4;text-align:right">
           <div>&copy; 2025 All Rights Reserved</div>
+          <div class="small">Static build</div>
         </div>
       </div>
-      <div class="badge-row" style="padding-top:10px">
-        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:22px" loading="lazy" decoding="async">
+
+      <!-- Location badge -->
+      <div class="badge-row" style="padding-top:10px;align-items:center">
+        <img src="assets/marker-icon.jpg" alt="Marker icon" style="height:24px;width:auto" loading="lazy" decoding="async">
         <span>Akron, OH · Serving 48 states &amp; Canada</span>
+      </div>
+
+      <!-- Responsive Google Map -->
+      <div class="card" style="margin-top:14px;padding:0;border-radius:16px;overflow:hidden">
+        <div style="position:relative;width:100%;padding-top:56.25%;"> <!-- 16:9 aspect -->
+          <iframe
+            title="All American Freight Logistics LLC — Akron, OH"
+            src="https://www.google.com/maps?q=ALL+AMERICAN+FREIGHT+LOGISTICS+LLC,1162+Rosemary+Blvd,Akron,OH+44306&output=embed"
+            style="position:absolute;inset:0;border:0;width:100%;height:100%;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </footer>
+
 
   <script>
   (function(){

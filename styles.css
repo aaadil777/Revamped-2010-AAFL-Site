@@ -177,3 +177,21 @@ h1, h2, h3, [id] { scroll-margin-top: 80px; }
 
 /* ensure anchor targets aren’t hidden under sticky bar */
 [id]{scroll-margin-top:80px}
+
+/* === Larger logos in header + footer === */
+.brand img{height:48px;width:auto;display:block}
+@media (max-width:720px){ .brand img{height:42px} }
+
+.footer .footer-brand img{height:42px;width:auto}
+@media (max-width:720px){ .footer .footer-brand img{height:38px} }
+
+/* === Hero inline trucks photo === */
+.hero-below-title{
+  margin:16px 0 6px 0;
+  border-radius:16px;
+  width:100%;
+  max-width:980px;
+  height:clamp(180px, 34vh, 380px);
+  object-fit:cover;
+  box-shadow:0 14px 32px rgba(0,0,0,.18);
+}
