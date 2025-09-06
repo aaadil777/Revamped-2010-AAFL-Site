@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -15,20 +15,19 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <div class="nav" id="site-nav">
     <div class="container nav-inner">
-      <div class="brand">
+      <a href="index.html" class="brand">
         <img src="assets/logo.jpg" alt="AAFL logo" fetchpriority="high" decoding="async">
         <span>All American Freight Logistics — The Parhar Group</span>
         <span class="tag">“The right choice in transportation”</span>
-      </div>
+      </a>
 
       <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle menu">
         <span class="nav-bar"></span><span class="nav-bar"></span><span class="nav-bar"></span>
       </button>
 
-      <nav id="site-menu" class="menu">
+      <nav id="site-menu" class="menu" role="navigation">
         <a class="active" href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="become-a-carrier.html">Become a Carrier</a>
@@ -39,6 +38,7 @@
       </nav>
     </div>
   </div>
+
 
   <main class="container">
     <section class="hero card" id="top">
@@ -173,8 +173,6 @@
     setTimeout(type, delay);
   })();
   </script>
-  <script src="app.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
-
-
