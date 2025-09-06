@@ -40,10 +40,22 @@ img{max-width:100%;height:auto;display:block}
 .menu a{padding:8px 12px;border-radius:10px;color:var(--ink)}
 .menu a.active, .menu a:hover{background:#f1f5f9}
 
-/* Mobile hamburger button */
-.nav-toggle{display:none;background:transparent;border:0;padding:10px;margin-left:auto;cursor:pointer}
+/* Mobile hamburger button (ensure 3 bars show, not overlapped) */
+.nav-toggle{
+  display:none;                 /* shown at <=900px */
+  background:transparent;border:0;padding:0;margin-left:auto;cursor:pointer;
+  width:44px;height:44px;
+  display:none;                 /* default hidden on desktop */
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;/* space between bars */
+}
 .nav-toggle .nav-bar,
-.nav-toggle .bar{display:block;width:24px;height:2px;background:#0f172a;margin:5px 0;border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.nav-toggle .bar{
+  display:block;width:24px;height:2px;background:#0f172a;
+  margin:0;                     /* avoid double-spacing with gap */
+  border-radius:2px;
+  transition:transform .2s ease,opacity .2s ease;
+}
 
 /* Prevent background scroll when mobile menu is open */
 body.nav-open{overflow:hidden}
@@ -84,7 +96,7 @@ body.nav-open{overflow:hidden}
 .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e2e8f0;color:var(--ink);font-size:12px}
 .lead{font-size:18px;color:#334155}
 .list{padding-left:18px}
-.small{font-size:14px;color:var(--muted)}
+.small{font-size:14px;color:#64748b}
 .section-title{font-size:24px;margin:6px 0 10px 0}
 
 /* ---------- Partners ---------- */
@@ -138,7 +150,8 @@ h1, h2, h3, [id] { scroll-margin-top: 80px; }
 
 /* ---------- Mobile menu reveal ---------- */
 @media (max-width:900px){
-  .nav-toggle{display:inline-flex}
+  .nav-toggle{display:inline-flex} /* show hamburger on mobile */
+
   .menu{
     position:absolute;left:0;right:0;top:100%;
     background:#fff;border-bottom:1px solid var(--line);
@@ -146,19 +159,21 @@ h1, h2, h3, [id] { scroll-margin-top: 80px; }
     transform-origin:top;transform:scaleY(0);
     max-height:0;overflow:hidden;
     transition:transform .18s ease,max-height .18s ease;
-    box-shadow:0 10px 25px rgba(0,0,0,.06)
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+    z-index:1001;
   }
   .menu a{display:block;padding:14px 20px;border-top:1px solid var(--line);font-size:18px}
   .nav.is-open .menu{transform:scaleY(1);max-height:80vh;overflow:auto}
-
-  /* hamburger → X (supports .nav-bar or .bar spans) */
-  .nav.is-open .nav-toggle .nav-bar:nth-child(1),
-  .nav.is-open .nav-toggle .bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
-  .nav.is-open .nav-toggle .nav-bar:nth-child(2),
-  .nav.is-open .nav-toggle .bar:nth-child(2){opacity:0}
-  .nav.is-open .nav-toggle .nav-bar:nth-child(3),
-  .nav.is-open .nav-toggle .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 }
+
+/* hamburger → X (supports .nav-bar or .bar spans) */
+.nav.is-open .nav-toggle{gap:0;}
+.nav.is-open .nav-toggle .nav-bar:nth-child(1),
+.nav.is-open .nav-toggle .bar:nth-child(1){transform:translateY(4px) rotate(45deg)}
+.nav.is-open .nav-toggle .nav-bar:nth-child(2),
+.nav.is-open .nav-toggle .bar:nth-child(2){opacity:0}
+.nav.is-open .nav-toggle .nav-bar:nth-child(3),
+.nav.is-open .nav-toggle .bar:nth-child(3){transform:translateY(-4px) rotate(-45deg)}
 
 /* ensure anchor targets aren’t hidden under sticky bar */
 [id]{scroll-margin-top:80px}
